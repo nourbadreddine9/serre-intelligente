@@ -1,10 +1,13 @@
+import 'package:app/image_plant_screen.dart';
 import 'package:app/screens/actionneurs_screen.dart';
 import 'package:app/screens/forgot_password_screen.dart';
 import 'package:app/screens/home/home_screen.dart';
+import 'package:app/screens/importImage.dart';
 import 'package:app/screens/login_screen.dart';
 import 'package:app/screens/signup_screen.dart';
 import 'package:app/screens/temperature_screen.dart';
 import 'package:app/screens/test.dart';
+import 'package:app/screens/analyse_image_screen.dart';
 import 'package:app/screens/welcome_screen.dart';
 import 'package:app/screens/settings_screen.dart';
 import 'package:app/screens/edit_profile_screen.dart';
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomeScreen(), //change it to wlc screen
+      home: ImportImage(), //change it to wlc screen
     );
   }
 }

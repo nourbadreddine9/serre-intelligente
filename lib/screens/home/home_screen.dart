@@ -2,13 +2,15 @@ import 'package:app/constants.dart';
 import 'package:app/screens/home/components/body.dart';
 import 'package:app/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'components/bottom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+   
+
     return Scaffold(
       appBar: buildAppBar(),
       body: Body(),
@@ -89,7 +91,10 @@ class NavigationDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.favorite_border),
               title: const Text("Favoris"),
-              onTap: () {},
+              onTap: () {
+               
+
+              },
             ),
             ListTile(
               leading: const Icon(Icons.workspaces_outline),

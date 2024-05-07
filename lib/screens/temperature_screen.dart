@@ -21,7 +21,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
    DatabaseReference _humRef = FirebaseDatabase.instance.ref('sensors').child('hum'); 
 
 
-     DatabaseReference _servoRef = FirebaseDatabase.instance.ref().child('servo'); //newwwwwwwwwwww
+     DatabaseReference _servoRef = FirebaseDatabase.instance.ref().child('servoPosition'); //newwwwwwwwwwww
 
 
   bool switchValue1 = false;
@@ -56,6 +56,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
 
    void _updateServoPosition(bool value) { // met à jour la position du servomoteur 
     _servoRef.set(value);
+    
   }
     
   
@@ -229,12 +230,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                             icon: 'assets/images/window.jpg',
                             title: 'fenetre',
                             switchValue: switchValue2,
-                           /* onSwitchChanged: (value) {
-                              setState(() {
-                                switchValue2 = value;
-                              });
-                            },*/
-                             onSwitchChanged: _updateServoPosition, //quand je clique sur le boutonl'etat duservomoteur change.
+                            onSwitchChanged: _updateServoPosition, //quand je clique sur le boutonl'etat duservomoteur change.
                           ),
                         ],
                       ),

@@ -1,3 +1,4 @@
+import 'package:app/core/theme/app_colors.dart';
 import 'package:app/screens/lumiereethum_screen.dart';
 import 'package:app/screens/phetco2_screens.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,15 @@ class _MyGreenHouse extends State<MyGreenHouse> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFC9E3CC),
+      appBar: AppBar(leading: IconButton(icon:
+                     Icon(
+                      Icons.arrow_back_sharp,
+                      size: 28,
+                      color: AppColors.backgroundColor,
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                    
+                    ),),
       body: SafeArea(
         child: Container(
          // margin: const EdgeInsets.only(top: 18, left: 24, right: 24),
@@ -26,19 +36,7 @@ class _MyGreenHouse extends State<MyGreenHouse> {
             mainAxisAlignment: MainAxisAlignment.start,
            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                
-              
-                     Icon(
-                      Icons.arrow_back_sharp,
-                      size: 28,
-                      color: Colors.black,
-                    ),
-                 
-                ],
-              ),
+            
               Expanded(
                 child: ListView(
                   physics: const BouncingScrollPhysics(),
@@ -65,7 +63,7 @@ class _MyGreenHouse extends State<MyGreenHouse> {
                     ),
                    
                   
-                     const SizedBox(height: 86),
+                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Row(

@@ -1,14 +1,48 @@
+import 'dart:io';
+
 import 'package:app/constants.dart';
 import 'package:app/screens/actionneurs_screen.dart';
+import 'package:app/screens/home/components/recommand_plant_card.dart';
+import 'package:app/screens/temperature_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class RecommendedSerres extends StatelessWidget {
-  const RecommendedSerres({
-    super.key,
-  });
+class RecommendedSerres extends StatefulWidget {
+  const RecommendedSerres({ Key? key }) : super(key: key);
 
   @override
+  _RecommendedSerresState createState() => _RecommendedSerresState();
+}
+
+class _RecommendedSerresState extends State<RecommendedSerres> {
+  @override
   Widget build(BuildContext context) {
+    /* File img =File("");
+     bool isValid=false;
+    Future<void> getLostData() async {
+  final ImagePicker picker = ImagePicker();
+  
+// Pick an image.
+final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+ img=File(image!.path);
+ //if(img != null){
+  setState(() {
+      isValid=true;
+
+  });
+ //}
+print('image=============================${img}');
+  final LostDataResponse response = await picker.retrieveLostData();
+  if (response.isEmpty) {
+    return;
+  }
+  final List<XFile>? files = response.files;
+  if (files != null) {
+   // _handleLostFiles(files);
+  } else {
+  //  _handleError(response.exception);
+  }
+}*/
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -18,7 +52,11 @@ class RecommendedSerres extends StatelessWidget {
             title: "Serre 1",
             country: "Monastir",
             press: (){
-                                    
+            //  print("on tap888");
+            //  print('seeeeeeee');
+              //  getLostData();
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyGreenHouse(),));              
+
             },
           ),
           RecommendPlantCard(
@@ -26,93 +64,24 @@ class RecommendedSerres extends StatelessWidget {
             title: "Serre 2",
             country: "Monastir",
             press: (){
-              Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MyGreenHouse(),
-                              ),
-                            );
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyGreenHouse(),));   
             },
-            
+          
           ),
           RecommendPlantCard(
             image: "assets/images/serre1.jpg",
             title: "Serre 3",
             country: "Monastir",
-            press: (){},
+            press: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyGreenHouse(),));   
+            },
           ),
-        ],
+     // Image.file(img)
+     ]
       ),
     );
   }
+
+
 }
 
-class RecommendPlantCard extends StatelessWidget {
-  const RecommendPlantCard({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.country,
-    required this.press,
-  });
-  final String image, title, country;
-  final Function press;
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.only(
-        left: kDefaultPadding,
-        top: kDefaultPadding / 2,
-        bottom: kDefaultPadding * 2.5,
-      ),
-      width: size.width * 0.4,
-      child: Column(
-        children: [
-          Image.asset(image),
-          GestureDetector(
-            onTap: press(),
-            child: Container(
-              padding: EdgeInsets.all(kDefaultPadding / 2),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 10),
-                    blurRadius: 50,
-                    color: Colors.green.shade700.withOpacity(0.23),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "$title\n".toUpperCase(),
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                        TextSpan(
-                          text: "$country".toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.green.shade700.withOpacity(0.5),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}

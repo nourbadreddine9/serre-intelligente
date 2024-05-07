@@ -1,4 +1,5 @@
 import 'package:app/constants.dart';
+import 'package:image_picker/image_picker.dart';
 import 'featured_serres.dart';
 import 'header_part.dart';
 import 'title_with_more_btn.dart';
@@ -11,7 +12,7 @@ class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     //will provide total height and width of screen
     Size size = MediaQuery.of(context).size;
     //enables scrolling on small devices
@@ -21,7 +22,10 @@ class Body extends StatelessWidget {
           HeaderPart(size: size),
           TitleWithMoreBtn(
             title: "Serres",
-            press: () {},
+            press: () {
+
+
+            },
           ),
           RecommendedSerres(),
           TitleWithMoreBtn(
