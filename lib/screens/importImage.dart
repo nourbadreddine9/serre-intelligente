@@ -22,7 +22,7 @@ class _ImportImageState extends State<ImportImage> {
   Uint8List? fileBytes;
   List<File> images = [];
   html.File? pickedFile;
-AnalysePlanteModel? analysePlanteModel;
+  AnalysePlanteModel? analysePlanteModel;
   File? _image;
 // api ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   analysPlante() async {
@@ -34,7 +34,7 @@ AnalysePlanteModel? analysePlanteModel;
           filename: pickedFile!.name,
         ),
       });
-print('data========>${formData}');
+      print('data========>${formData}');
       var dio = Dio();
       var response = await dio.request(
         'http://127.0.0.1:5000/predict',
@@ -46,11 +46,15 @@ print('data========>${formData}');
 
       if (response.statusCode == 200) {
         print("response========>${json.encode(response.data)}");
-        analysePlanteModel=AnalysePlanteModel.fromJson(response.data);
+        analysePlanteModel = AnalysePlanteModel.fromJson(response.data);
         // pour prendre la maladie from response
         print('name==============${analysePlanteModel!.predictedClassName}');
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => AnalyseImageScreen(nameMaladie:analysePlanteModel!.predictedClassName ,),));
-
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AnalyseImageScreen(
+            nameMaladie: analysePlanteModel!.predictedClassName,
+            image:fileBytes ,
+          ),
+        ));
       } else {
         print("error===============>${response.statusMessage}");
       }
@@ -111,14 +115,23 @@ print('data========>${formData}');
         child: Column(
           children: [
             SizedBox(height: 30),
-            _image != null
-                ? Image.file(
-                    _image!,
-                    width: 250,
-                    height: 250,
-                    fit: BoxFit.cover,
-                  )
-                : Image.network('https://picsum.photos/250?image=9'),
+           
+           pickedFile != null && fileBytes != null
+            ? Column(
+                children: [
+                  Image.memory(fileBytes!),
+                  Text('Picked File: ${pickedFile!.name}'),
+                ],
+              )
+            : SizedBox(),
+            // _image != null
+            //     ? Image.file(
+            //         _image!,
+            //         width: 250,
+            //         height: 250,
+            //         fit: BoxFit.cover,
+            //       )
+            //     : Image.network('https://picsum.photos/250?image=9'),
             SizedBox(height: 40),
             CustomButton(
               title: ' Choisir  depuis la galerie',
@@ -129,7 +142,7 @@ print('data========>${formData}');
             CustomButton(
                 title: "Analyse des données  ",
                 icon: Icons.image_outlined,
-                onClick:() =>  analysePlante()),
+                onClick: () => analysePlante()),
           ],
         ),
       ),

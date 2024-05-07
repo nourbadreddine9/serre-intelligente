@@ -1,7 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 class AnalyseImageScreen extends StatelessWidget {
   final String?  nameMaladie;
-   AnalyseImageScreen({Key? key, this.nameMaladie}) : super(key: key);
+  final  Uint8List? image;
+   AnalyseImageScreen({Key? key, this.nameMaladie, this.image}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +25,8 @@ class AnalyseImageScreen extends StatelessWidget {
           // Conteneur pour le cadre
           Positioned(
             bottom: 150, // Position verticale du cadre
-            left: 20,
-            right: 20,
+            // left: 20,
+            // right: 20,
             child: Container(
               height: 250, // Hauteur agrandie du cadre
               color: Colors.black.withOpacity(0.5), // Couleur du cadre (noir semi-transparent)
@@ -31,17 +34,9 @@ class AnalyseImageScreen extends StatelessWidget {
               child: Row(
                 children: [
                   // Petite image à gauche
-                  Container(
-                    width: 150, // Largeur agrandie de l'image
-                    height: 150, // Hauteur agrandie de l'image
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/healthy.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                 
+Image.memory(image!),
+
                   SizedBox(width: 30), // Espacement entre l'image et le titre
                   // Titre et texte
                   Column(
